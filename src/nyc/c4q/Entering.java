@@ -7,22 +7,28 @@ public class Entering {
     boolean direction = false;
 
     public void prompt(String line) {
+
         System.out.println(line);
+    }
+
+    public String scanAnswer(){
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        input = input.toLowerCase();
+        return input;
     }
 
     public void directionInput(){
         do{
-        Scanner scanner = new Scanner(System.in);
-        leftOrRight = scanner.nextLine();
-        leftOrRight = leftOrRight.toUpperCase();
-            if (leftOrRight.equals("R")) {
-                System.out.print("You go right.");
+        leftOrRight = scanAnswer();
+            if (leftOrRight.equals("r")) {
+                prompt("You go right.");
                 break;
-            } else if (leftOrRight.equals("L")) {
-                System.out.println("You go left.");
+            } else if (leftOrRight.equals("l")) {
+                prompt("You go left.");
                 break;
             } else {
-                System.out.println("There is no turning back now. Pick a direction.");
+                prompt("There is no turning back now. Pick a direction.");
                 direction = true;
             }
 
@@ -33,25 +39,26 @@ public class Entering {
 
     public String enteringCheck() {
         boolean enter = false;
+        int door = 0;
         int wrongAnswer = 0;
+        String check;
+
             do {
-                Scanner check = new Scanner(System.in);
-                String entering = check.next();
-                String input = entering.toLowerCase();
-                if (input.equals("door")) {
-                    System.out.print("You try going through the front door.  It's locked and door doesn't budge. \n");
+                String entering = scanAnswer();
+                if (entering.equals("door")) {
+                    prompt("You try going through the front door.  It's locked and door doesn't budge.");
                     enter = true;
-                } else if (input.equals("window")) {
-                    System.out.println("You climbed up the window, it wasn't pretty but you made it in.");
+                } else if (entering.equals("window")) {
+                    prompt("You climbed up the window, it wasn't pretty but you made it in.");
                     break;
                 } else {
                     for(int i = 0; i < 1; i++){
                         wrongAnswer++;
                     }
-                    System.out.println("That is not a way in.");
+                    prompt("That is not a way in.");
                     enter = true;
                     if(wrongAnswer >= 3){
-                        System.out.println("Perhaps try the window...");
+                        prompt("Perhaps try the window...");
                     }
                 }
 
@@ -63,18 +70,21 @@ public class Entering {
 }
 
 
-//        for(int i = 0; i <= leftOrRight.charAt(0); i++){
 
 
-//            if(leftOrRight.equals("R")){
-//                System.out.println("You go right.");
-//                break;
-//            }else if(leftOrRight.equals("L")){
-//                System.out.println("You go left.");
-//                break;
-//            }else{
-//                System.out.println("Choose a valid direction.");
-//                leftOrRight = scanner.next();
+
+//                    for(int i= 0; i < 1; i++){
+//                        door++;
+//                    }
+//                    if(door >= 3){
+//                        prompt("You pull with all your strength, the handle breaks and you go flying backwards. You get up in immense pain." +
+//                                " Do you want to try entering through the window? Enter: Y or N.");
+//                        check = scanAnswer();
+//                        if(check.equals("y") ||check.equals("yes")){
+//                            prompt("You try your best but in your injured state you fail to climb in.  You waddle your way back to your car in shame.");
 //
-//            }
-//        }
+//                        }else{
+//                            prompt("You give up and fail as an investigative reporter");
+//                            break;
+//                        }
+//                    }
